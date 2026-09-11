@@ -78,7 +78,7 @@ sv-enable sshd
 
 ## OpenCL
 
-Natív Linux-ban AMD és Intel GPU használata esetén installálhatjuk a gyártó OpenCL driverét, vagy használhatjuk a MESA GPU driver + Rusticl OpenCL driver. NVIDIA esetén a gyártó drivere az egyetlen opció.
+Natív Linux-ban AMD és Intel GPU használata esetén installálhatjuk a gyártó OpenCL driverét, vagy használhatjuk a MESA GPU driver + Rusticl OpenCL driver kombinációt. NVIDIA esetén a gyártó drivere az egyetlen opció.
 
 WSL2-ben az AMD és az Intel kínál OpenCL gyorsítást gyártói driverrel. Az NVIDIA esetében csak CUDA érhető el, így ott a PoCL a megoldás, CUDA backend-del.
 
