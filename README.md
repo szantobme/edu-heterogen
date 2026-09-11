@@ -25,6 +25,8 @@ A hoszt operációs rendszer lehet natív Linux (preferált az Ubuntu 24.04 vagy
 
 Natív Linux használata esetén javasolt az Ubuntu 24.04 vagy annak valamelyik leszármazottja.
 
+A továbbiakban az Ubuntu package nevek szerepelnek, más disztribúciókon ezek változhatnak.
+
 ## WSL2
 
 A WSL2 a Microsoft Hyper-V virtualizációs technológiáján futó teljes értékű Linux. WSL környezet installálás:
@@ -40,17 +42,17 @@ wsl --list --online
 wsl --install Ubuntu-24.04
 ```
 
-(WSL installálás után a Windows is virtualizálva fut, így egyes - tipikusan CPU tuning - alkalmazások, amik közvetlen regiszter hozzáférést igénylenek, nem fognak működni.)
+(WSL installálás után a Windows is virtualizálva fut, így egyes - tipikusan CPU tuning - alkalmazások, amik közvetlen regiszter hozzáférést igényelnek, nem fognak működni.)
 
 ## Termux
 
-A [Termux](https://termux.dev/en/) egy Android-on megvalósított Linux terminal. Közvetlenül nem tud Linux futtatható állományokat futtatni, de újrafordítással jól használható. Friss verzió installálása:
+A [Termux](https://termux.dev/en/) egy Android-on megvalósított Linux terminal. Közvetlenül nem tud Linux futtatható állományokat futtatni, de az alkalmazások újrafordításával jól használható. Friss verzió installálása:
 
 - [Instaláljuk az F-Droid appot](https://f-droid.org/en/​)
 - Az F-Droid-ból instaláljuk a "Termux terminal emulator with packages​"-t
 - Ha nem tudunk F-Droid-t installálni, próbálkozhatunk a Play Store-ban levő Termux-szal is, vagy közvetlenül az APK letöltésével.
 
-Fríssités, SSH szerver installálás (és automatikus indítás) és jelszó beállítás:
+Fríssités, SSH szerver installálás és jelszó beállítás:
 
 ```bash
 apt update​
@@ -76,9 +78,9 @@ sv-enable sshd
 
 ## OpenCL
 
-Natív Linux-ban AMD és Intel GPU használata esetén installálhatjuk a gyártó OpenCL driverét, vagy használhatjuk a MESA Rusticl drivert. NVIDIA esetén a gyártó drivere az egyetlen opció.
+Natív Linux-ban AMD és Intel GPU használata esetén installálhatjuk a gyártó OpenCL driverét, vagy használhatjuk a MESA GPU driver + Rusticl OpenCL driver. NVIDIA esetén a gyártó drivere az egyetlen opció.
 
-WSL2-ben az AMD és az Intel kínál OpenCL gyorsítást (gyártói driver kell), az NVIDIA csak CUDA-t. Így ott a PoCL a megoldás, CUDA backend-del.
+WSL2-ben az AMD és az Intel kínál OpenCL gyorsítást gyártói driverrel. Az NVIDIA esetében csak CUDA érhető el, így ott a PoCL a megoldás, CUDA backend-del.
 
 Termux esetén OpenCL haználatára a telefonon remélhetőleg meglévő Android OpenCL drivere kínál lehetőséget.
 
@@ -129,7 +131,7 @@ A GCN 5.0-nál régebbi eszközöket a legacy OpenCL driver támogatja, ez az [a
 sudo amdgpu-install --usecase=dkms,opencl --opencl=legacy --accept-eula​
 ```
 
-Alternatíva a MESA radeonsi driver használata rusticl-lel.
+(Jó) Alternatíva a MESA radeonsi driver használata Rusticl-lel. A radeonsi GCN 1.0-tól támogatja az AMD GPU-kat.
 
 ### Intel
 
@@ -139,16 +141,16 @@ Az Intel a Gen8 vagy újabb GPU-khoz kínál driver-t ([Intel NEO](https://githu
 sudo apt install intel-opencl-icd​
 ```
 
-Alternatíva lehet a MESA iris driver rusticl-lel, ez ugyancsak Gen8 és újabb GPU-kat támogat.
+Alternatíva lehet a MESA iris driver Rusticl-lel, ez ugyancsak Gen8 és újabb GPU-kat támogat.
 
 ### NVIDIA
 
-Natív Linux használata esetén minden disztribúció tartalmaz NVIDIA drivert, aminek része az OpenCL.
+Natív Linux használata esetén minden disztribúció tartalmaz NVIDIA drivert, aminek része az OpenCL driver.
 
-- Turing és újabb GPU-k esetén a legfrissebb (590.x, 595.x, 600.x, 610.x) elérhető driverek megfelelők, ez disztribúció függő.
-- A Kepler GPU-kat a 470.x driverek támogatják
-- Pascal, Maxwell architektúrák: 580.x
-- Fermi GPU-khoz a 390.x driver használható, de csak régebbi kernellel
+- Turing és újabb GPU-k esetén a legfrissebb (590.x, 595.x, 600.x, 610.x) elérhető driver megfelelő, ez disztribúció függő.
+- Pascal, Maxwell architektúrák: 580.x.
+- A Kepler GPU-kat a 470.x driverek támogatják.
+- Fermi GPU-khoz a 390.x driver használható, de csak régebbi kernel verzióval, úgyhogy leginkább Ubunti 22.04-ig.
 
 WSL2 alatt csak CUDA driver van, itt a PoCL CUDA backend-je használható. Ugyanez igaz az NVIDIA SoC-okra is.
 
@@ -224,7 +226,7 @@ Az Android OpenCL driverét szeretnénk használni:
 ```bash
 apt update​
 apt upgrade​
-apt -y install clinfo clpeak opencl-vendor-driver​
+apt -y install opencl-vendor-driver​
 
 ```
 
