@@ -50,16 +50,18 @@ A [Termux](https://termux.dev/en/) egy Android-on megvalósított Linux terminal
 - Az F-Droid-ból instaláljuk a "Termux terminal emulator with packages​"-t
 - Ha nem tudunk F-Droid-t installálni, próbálkozhatunk a Play Store-ban levő Termux-szal is
 
-Fríssités, SSH szerver installálás és jelszó beállítás:
+Fríssités, SSH szerver installálás (és automatikus indítás) és jelszó beállítás:
 
 ```bash
 apt update​
 apt upgrade​
 apt –y install openssh​
+apt -y install termux-services
+sv-enable sshd
 passwd​
 ```
 
-Az SSH daemon-t minden Termux újraindítás után indítsuk el:
+Indítsuk el az SSH daemon-t:
 
 ```bash
 sshd
