@@ -100,6 +100,11 @@ Az összes eszköz részletes tulajdonságainak listázása:
 clinfo
 ```
 
+További hasznos alkalmazás a clpeak, amely az OpenCL eszköz maximális teljesítményét méri.
+
+```bash
+sudo apt install clpeak
+```
 
 ### AMD
 
@@ -121,7 +126,6 @@ sudo amdgpu-install --usecase=dkms,opencl --opencl=legacy --accept-eula​
 
 Alternatíva a MESA radeonsi driver használata rusticl-lel.
 
-
 ### Intel
 
 Az Intel a Gen8 vagy újabb GPU-khoz kínál driver-t ([Intel NEO](https://github.com/intel/compute-runtime)), ez jobbára minden disztribúcióban benne van:
@@ -131,7 +135,6 @@ sudo apt install intel-opencl-icd​
 ```
 
 Alternatíva lehet a MESA iris driver rusticl-lel, ez ugyancsak Gen8 és újabb GPU-kat támogat.
-
 
 ### NVIDIA
 
@@ -143,7 +146,6 @@ Natív Linux használata esetén minden disztribúció tartalmaz NVIDIA drivert,
 - Fermi GPU-khoz a 390.x driver használható, de csak régebbi kernellel
 
 WSL2 alatt csak CUDA driver van, itt a PoCL CUDA backend-je használható. Ugyanez igaz az NVIDIA SoC-okra is.
-
 
 ### MESA
 
@@ -166,7 +168,6 @@ sudo add-apt-repository ppa:oibaf/graphics-drivers​
 sudo apt update​
 sudo apt upgrade​
 ```
-
 
 ### PoCL
 
@@ -207,7 +208,6 @@ echo "/opt/pocl-7.2/lib/libpocl.so" | sudo tee --append /etc/OpenCL/vendors/pocl
 
 Ezután a clinfo remélhetőleg egy CPU és egy GPU eszközt listáz.
 
-
 ### Termux
 
 Az Android OpenCL driverét szeretnénk használni:
@@ -235,7 +235,6 @@ Ugyanez a helyzet Samsung Xclipse GPU-k esetén:
 ```bash
 LD_LIBRARY_PATH=/vendor/lib64:/vendor/lib64/hw clinfo -l​
 ```
-
 
 ## Docker
 
