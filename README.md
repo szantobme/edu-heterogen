@@ -253,7 +253,17 @@ Installáljuk a [Docker engine-t](https://docs.docker.com/engine/install/) és h
 
 ## Visual Studio Code
 
-Natív Linux esetén töltsük le a disztribúciónak megfelelő fájlt, WSL2 esetén pedig Winows alá installáljuk a VSCode-t [INNEN](https://code.visualstudio.com/download?_exp_download=fb315fc982).
+Natív Linux esetén töltsük le a disztribúciónak megfelelő fájlt, WSL2 esetén pedig Winows alá installáljuk a VSCode-t [INNEN](https://code.visualstudio.com/download?_exp_download=fb315fc982), majd installáljuk. Ubuntu esetén:
+
+```bash
+sudo dpkg -i ./code_*.deb
+```
+
+Ha az installálás során hibába futunk, az nagy valószínűséggel dependency probléma, ekkor:
+
+```bash
+sudo apt --fix-broken install
+```
 
 Installáljuk az alábbi kiegészítéseket:
 
