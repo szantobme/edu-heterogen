@@ -32,7 +32,7 @@ A továbbiakban az Ubuntu package nevek szerepelnek, más disztribúciókon ezek
 A WSL2 a Microsoft Hyper-V virtualizációs technológiáján futó teljes értékű Linux. WSL környezet installálás:
 
 ```bash
-wsl --install --no-distribution​
+wsl --install --no-distribution
 ```
 
 Elérhető disztribúciók listázásda, Ubuntu 24.04 installálás:
@@ -48,17 +48,17 @@ wsl --install Ubuntu-24.04
 
 A [Termux](https://termux.dev/en/) egy Android-on megvalósított Linux terminal. Közvetlenül nem tud Linux futtatható állományokat futtatni, de az alkalmazások újrafordításával jól használható. Friss verzió installálása:
 
-- [Instaláljuk az F-Droid appot](https://f-droid.org/en/​)
-- Az F-Droid-ból instaláljuk a "Termux terminal emulator with packages​"-t
+- [Instaláljuk az F-Droid appot](https://f-droid.org/en/)
+- Az F-Droid-ból instaláljuk a "Termux terminal emulator with packages."-t
 - Ha nem tudunk F-Droid-t installálni, próbálkozhatunk a Play Store-ban levő Termux-szal is, vagy közvetlenül az APK letöltésével.
 
 Fríssités, SSH szerver installálás és jelszó beállítás:
 
 ```bash
-apt update​
-apt upgrade​
-apt –y install openssh​
-passwd​
+apt update
+apt upgrade
+apt –y install openssh
+passwd
 ```
 
 Indítsuk el az SSH daemon-t:
@@ -91,8 +91,8 @@ Amennyiben nem tudjuk a GPU-nk architektúráját, a [Techpowerup adatbázisa se
 Hasznos alkalmazás a clinfo:
 
 ```bash
-sudo apt update​
-sudo apt -y install clinfo​
+sudo apt update
+sudo apt -y install clinfo
 ```
 
 OpenCL eszközök listázása:
@@ -117,8 +117,8 @@ sudo apt install clpeak
 
 Az AMD gyári driverének (amdgpu) eszköz támogatása elég katyvasz és/vagy limitált. Azaktuális driver a ROCr, ez GCN 5.0-tól (Vega 11) támogat eszközöket, a ROCm része.
 
-- A [legfrissebb ROCm verzió a 10.0.0](https://rocm.docs.amd.com/​), de ez hivatalosan csak a legújabb GPU-kat támogatja.
-  - Jóval szélesebb a [támogatott GPU-k köre](https://github.com/ROCm/TheRock/blob/main/SUPPORTED_GPUS.md) a [TheRock](https://github.com/ROCm/TheRock/blob/main/RELEASES.md​)-nak, ami kb a ROCm nightly build-je.
+- A [legfrissebb ROCm verzió a 10.0.0](https://rocm.docs.amd.com/), de ez hivatalosan csak a legújabb GPU-kat támogatja.
+  - Jóval szélesebb a [támogatott GPU-k köre](https://github.com/ROCm/TheRock/blob/main/SUPPORTED_GPUS.md) a [TheRock](https://github.com/ROCm/TheRock/blob/main/RELEASES.md)-nak, ami kb a ROCm nightly build-je.
   - A 10.0.0 WSL2-t is támogat.
 - Amennyiben a 10.0.0 nem opció, a javasolt régebbi verziók a 7.2.4 és a 6.4.4.
   - [7.2.4 installálási útmutató](https://rocm.docs.amd.com/projects/install-on-linux/en/docs-7.2.4/install/quick-start.html)
@@ -128,7 +128,7 @@ Az AMD gyári driverének (amdgpu) eszköz támogatása elég katyvasz és/vagy 
 A GCN 5.0-nál régebbi eszközöket a legacy OpenCL driver támogatja, ez az [amdgpu 5.7.1](https://repo.radeon.com/amdgpu-install/5.7.1/ubuntu/) verziójában volt elérhető, csak Ubuntu 22.04-ig. Installálás:
 
 ```bash
-sudo amdgpu-install --usecase=dkms,opencl --opencl=legacy --accept-eula​
+sudo amdgpu-install --usecase=dkms,opencl --opencl=legacy --accept-eula
 ```
 
 (Jó) Alternatíva a MESA radeonsi driver használata Rusticl-lel. A radeonsi GCN 1.0-tól támogatja az AMD GPU-kat.
@@ -138,7 +138,7 @@ sudo amdgpu-install --usecase=dkms,opencl --opencl=legacy --accept-eula​
 Az Intel a Gen8 vagy újabb GPU-khoz kínál driver-t ([Intel NEO](https://github.com/intel/compute-runtime)), ez jobbára minden disztribúcióban benne van:
 
 ```bash
-sudo apt install intel-opencl-icd​
+sudo apt install intel-opencl-icd
 ```
 
 Alternatíva lehet a MESA iris driver Rusticl-lel, ez ugyancsak Gen8 és újabb GPU-kat támogat.
@@ -161,7 +161,7 @@ A GPU MESA driverének használatához az szükséges, hogy a gyártói driver-t
 MESA OpenCL installálás:
 
 ```bash
-sudo apt install -y mesa-opencl-icd​
+sudo apt install -y mesa-opencl-icd
 ```
 
 A Rusticl használatát külön engedélyezni kell a **RUSTICL_ENABLE** környezeti változóval adott driver(ek)hez, pl radeonsi-hez:
@@ -173,9 +173,9 @@ export RUSTICL_ENABLE=radeonsi
 Mivel a MESA és a Rusticl elég gyorsan fejlődik, érdemes lehet a disztribúcióban található régebbi verziót az aktuálisra cserélni, legfeljebb több lesz a bug :)
 
 ```bash
-sudo add-apt-repository ppa:oibaf/graphics-drivers​
-sudo apt update​
-sudo apt upgrade​
+sudo add-apt-repository ppa:oibaf/graphics-drivers
+sudo apt update
+sudo apt upgrade
 ```
 
 ### PoCL
@@ -183,38 +183,38 @@ sudo apt upgrade​
 A PoCL tipikusan régebbi, CPU backend-t tartalmazó verzója a disztribúciók jelentős részében rendelkezésre áll:
 
 ```bash
-sudo apt install -y pocl-opencl-icd​
+sudo apt install -y pocl-opencl-icd
 ```
 
 Amennyiben szeretnénk CUDA backend-t, a legjobb, ha magunk fordítunk. Ehhez kelleni fog a CUDA Tollkit, [installálási útmutató WSL2-höz itt érhető el](https://developer.nvidia.com/cuda-13-3-1-download-archive?target_os=Linux&target_arch=x86_64&Distribution=WSL-Ubuntu&target_version=2.0). A CUDA toolkit installálsa után ellenőrizzük, hogy a GPU látszik-e WSL2-ben:
 
 ```bash
-nvidia-smi​
+nvidia-smi
 ```
 
 PoCL 7.2 fordítás és installálás:
 
 ```bash
-export LLVM_VERSION=20​
+export LLVM_VERSION=20
 sudo apt install -y build-essential ocl-icd-libopencl1 cmake git \
 pkg-config libclang-${LLVM_VERSION}-dev clang-${LLVM_VERSION} \
 llvm-${LLVM_VERSION} make ninja-build ocl-icd-libopencl1 \
 ocl-icd-dev ocl-icd-opencl-dev libhwloc-dev zlib1g zlib1g-dev \
 clinfo dialog apt-utils libxml2-dev libclang-cpp${LLVM_VERSION}-dev \
-libclang-cpp${LLVM_VERSION} llvm-${LLVM_VERSION}-dev libncurses6​
-cd ~/Downloads​
-git clone -b release_7_2 https://github.com/pocl/pocl.git pocl-7.2​
-cd pocl-7.2​
-mkdir build​
-cd build​
+libclang-cpp${LLVM_VERSION} llvm-${LLVM_VERSION}-dev libncurses6
+cd ~/Downloads
+git clone -b release_7_2 https://github.com/pocl/pocl.git pocl-7.2
+cd pocl-7.2
+mkdir build
+cd build
 cmake -DCMAKE_INSTALL_PREFIX=/opt/pocl-7.2 -DCMAKE_BUILD_TYPE=Release \
 -DCMAKE_CXX_FLAGS="-funroll-loops -march=native -L/usr/lib/wsl/lib" \
 -DCMAKE_C_FLAGS="-funroll-loops -march=native -L/usr/lib/wsl/lib" -DENABLE_CUDA=ON ..
-make​
-sudo make install​
-sudo mkdir -p /etc/OpenCL/vendors/​
-sudo touch /etc/OpenCL/vendors/pocl-7.2.icd​
-echo "/opt/pocl-7.2/lib/libpocl.so" | sudo tee --append /etc/OpenCL/vendors/pocl-7.2.icd​
+make
+sudo make install
+sudo mkdir -p /etc/OpenCL/vendors/
+sudo touch /etc/OpenCL/vendors/pocl-7.2.icd
+echo "/opt/pocl-7.2/lib/libpocl.so" | sudo tee --append /etc/OpenCL/vendors/pocl-7.2.icd
 ```
 
 Ezután a clinfo remélhetőleg egy CPU és egy GPU eszközt listáz.
@@ -224,9 +224,9 @@ Ezután a clinfo remélhetőleg egy CPU és egy GPU eszközt listáz.
 Az Android OpenCL driverét szeretnénk használni:
 
 ```bash
-apt update​
-apt upgrade​
-apt -y install opencl-vendor-driver​
+apt update
+apt upgrade
+apt -y install opencl-vendor-driver
 
 ```
 
@@ -237,14 +237,14 @@ ARM Mali vagy IMG PowerVR esetében a clinfo listázza a GPU-t.
 Qualcomm Snapdragon esetében extra library-re van szükség:
 
 ```bash
-LD_LIBRARY_PATH=/vendor/lib64 clinfo -l​
+LD_LIBRARY_PATH=/vendor/lib64 clinfo -l
 
 ```
 
 Ugyanez a helyzet Samsung Xclipse GPU-k esetén:
 
 ```bash
-LD_LIBRARY_PATH=/vendor/lib64:/vendor/lib64/hw clinfo -l​
+LD_LIBRARY_PATH=/vendor/lib64:/vendor/lib64/hw clinfo -l
 ```
 
 ## Docker
@@ -258,12 +258,12 @@ Natív Linux esetén töltsük le a disztribúciónak megfelelő fájlt, WSL2 es
 Installáljuk az alábbi kiegészítéseket:
 
 ```bash
-code --install-extension ms-vscode.cpptools​
-code --install-extension ms-vscode.cpptools-extension-pack​
-code --install-extension ms-vscode.cpptools-themes​
-code --install-extension ms-vscode-remote.remote-containers​
-code --install-extension ms-vscode.makefile-tools​
-code --install-extension galarius.vscode-opencl​
+code --install-extension ms-vscode.cpptools
+code --install-extension ms-vscode.cpptools-extension-pack
+code --install-extension ms-vscode.cpptools-themes
+code --install-extension ms-vscode-remote.remote-containers
+code --install-extension ms-vscode.makefile-tools
+code --install-extension galarius.vscode-opencl
 ```
 
 # VSCode, fordítás, futtatás
@@ -284,13 +284,19 @@ Szerkesztőként/GUI-ként a VSCode-t használjuk, míg a fordítást Docker ima
 
 A .devcontainer konyvtárak tartalmazzák a dockerfile-t, ami alapján az adott architektúrára történő fordításhoz szükséges Docker image generálódik. Ezzel a könyvtárral egy szinten helyezkednek el a C++ projektjeink könyvtárai, ebből a ZIP-ben egy van, a helloworld.
 
-Adott C++ projekt megnyitása a következő. Indítsuk el a VSCode-t a megfelelő architetúra könyvtárából (pl. ~/heterogen/vscode_amd64):
+Adott C++ projekt megnyitása a következő:
+
+- Natív Linux alatt terminal-ból
+- WSL2 alatt WSL2 terminal-ból
+
+Lápjünk át a megfelelő architetúra könyvtáráb (pl. ~/heterogen/vscode_amd64), majd onnan indítsuk el a VSCode-t, megnyitva az aktuélis könyvtárat:
 
 ```bash
+cd ~/heterogen/vscode_amd64
 code .
 ```
 
-A VScode észlelni fogja a .devcontainer könyvtárat, és felajánlja, hogy megnyitja a konténerben az éppen megnyitott könyvtárat - erre nyomjunk igen-t. Ezután nyithatjuk meg a projetet tartalmazó könytárat a File/Open Folder menüben.
+A VScode észlelni fogja a .devcontainer könyvtárat, és felajánlja, hogy megnyitja a konténerben az éppen megnyitott könyvtárat - erre nyomjunk igen-t. Ezután nyithatjuk meg a projetet tartalmazó könytárat a File/Open Folder menüpontját használva.
 
 (Megj. Mint látható, a projekt könyvtárak duplikálva vannak. Ennél szebb lenne, ha ezek egy külön könyvtárban lennének, és az architektúrák alá ezeket symlink-elnénk. Csak azért nem ezt tesszük, hogy a WSL2-t haználók tudják a hoszt Windows fájlkezelő alkalmazásait használni.)
 
@@ -306,8 +312,8 @@ A fordítást makefile-lal hajtjuk végre, így
 Ahhoz, hogy a lefordított alkalmazásainkat futtatni tudjuk, a hoszt gépen az alábbi package-ekre lesz szükség.
 
 ```bash
-sudo apt update​
-sudo apt -y install libgomp1​
-sudo apt -y install libsndfile1​
-sudo apt -y install libdevil1c2​
+sudo apt update
+sudo apt -y install libgomp1
+sudo apt -y install libsndfile1
+sudo apt -y install libdevil1c2
 ```
