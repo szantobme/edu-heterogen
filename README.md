@@ -358,7 +358,7 @@ Adott C++ projekt megnyitása a következő:
 - Natív Linux alatt terminal-ból
 - WSL2 alatt WSL2 terminal-ból
 
-Lápjünk át a megfelelő architetúra könyvtáráb (pl. ~/heterogen/vscode_amd64), majd onnan indítsuk el a VSCode-t, megnyitva az aktuélis könyvtárat:
+Lápjünk át a megfelelő architetúra könyvtárába (pl. ~/heterogen/vscode_amd64), majd onnan indítsuk el a VSCode-t, megnyitva az aktuális könyvtárat:
 
 ```bash
 cd ~/heterogen/vscode_amd64
@@ -373,7 +373,7 @@ A VScode észlelni fogja a .devcontainer könyvtárat, és felajánlja, hogy meg
 
 A fordítást makefile-lal hajtjuk végre, így
 
-- A make futtaható terminal-ból.
+- A make futtaható terminal-ból, de ekkor a hoszt-on fordítunk, nem pedig a DevContainer-ben.
 - A VSCode-ba installáltuk a Makefile Tools-t, így a bal oldali menüben azt kiválasztva, majd Build target opciót All-ra állítva a Build ikonnal is tudunk fordítani.
 
 ### Futatás
