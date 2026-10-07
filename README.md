@@ -289,6 +289,7 @@ Jó ideje a WSL2 lehetővé teszi a hoszt GPU video enkóderének és dekóderé
 Kipróbálás:
 
 ```bash
+export LIBVA_DRIVER_NAME=d3d12
 vainfo --display drm --device /dev/dri/renderD128
 ```
 
