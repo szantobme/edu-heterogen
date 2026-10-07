@@ -320,7 +320,7 @@ Ha több GPU van a rendszerben, akkor a /dev/dri-ben több render* fájl is lehe
 vainfo --display drm --device /dev/dri/renderD129
 ```
 
-Ha több GPU-nk van, de nem mindegyikhez csatlakozik kijelző, akkor azon túlmenően, hogy megadjuk, hogy a d3d12 driver-t használjuk, adjuk mega használni kívánt GPU nevétis. Pl. NVIDIA esetében:
+Ha több GPU-nk van, de nem mindegyikhez csatlakozik kijelző, akkor azon túlmenően, hogy megadjuk, hogy a d3d12 driver-t használjuk, adjuk mega használni kívánt GPU nevét is. Pl. NVIDIA esetében:
 
 ```bash
 export LIBVA_DRIVER_NAME=d3d12
