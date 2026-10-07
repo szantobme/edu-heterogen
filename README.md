@@ -329,6 +329,12 @@ export MESA_D3D12_DEFAULT_ADAPTER_NAME=NVIDIA
 vainfo --display drm --device /dev/dri/renderD128
 ```
 
+Teszt Gstreamer-ben:
+
+```bash
+gst-launch-1.0 -v videotestsrc num-buffers=1000 ! video/x-raw,width=1920,height=1200 ! vapostproc ! vah264enc device-path=/dri/renderD128 ! fakesink
+```
+
 # VSCode, fordítás, futtatás
 
 ### VSCode
