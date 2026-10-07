@@ -290,6 +290,7 @@ Kipróbálás:
 
 ```bash
 export LIBVA_DRIVER_NAME=d3d12
+export GALLIUM_DRIVER=d3d12
 vainfo --display drm --device /dev/dri/renderD128
 ```
 
