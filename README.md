@@ -18,7 +18,7 @@ A hoszt operációs rendszer lehet natív Linux (preferált az Ubuntu 24.04 vagy
   - [Docker](#docker)
   - [Visual Studio Code](#visual-studio-code)
   - [Gstreamer](#gstreamer)
-    - [WSL2 VAAPI](#wsl2-vaapi)
+  - [WSL2 VAAPI](#wsl2-vaapi)
 - [VSCode, fordítás, futtatás](#vscode-fordts-futtats)
 
 # Környezet
@@ -282,7 +282,7 @@ code --install-extension galarius.vscode-opencl
 
 Gstreamer ás Gstreamer plugin-ek installálása: [https://gstreamer.freedesktop.org/documentation/installing/on-linux.html?gi-language=c](https://gstreamer.freedesktop.org/documentation/installing/on-linux.html?gi-language=c)
 
-### WSL2 VAAPI
+## WSL2 VAAPI
 
 Jó ideje a WSL2 lehetővé teszi a hoszt GPU video enkóderének és dekóderének használatát. Ehhez engedélyzeni kell a systemd-t, valamint installálni kell egy viszonylag friss MESA-t. Bővebben: [https://devblogs.microsoft.com/commandline/d3d12-gpu-video-acceleration-in-the-windows-subsystem-for-linux-now-available/](https://devblogs.microsoft.com/commandline/d3d12-gpu-video-acceleration-in-the-windows-subsystem-for-linux-now-available/)
 
