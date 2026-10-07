@@ -302,6 +302,12 @@ Ellenőrizzük, hogy létezik-e a /dev/dri könyvtár. Ha nem, kézzel töltsük
 sudo modprobe vgem
 ```
 
+Ahhoz, hogy minden boot-nál betöltődjön:
+
+```bash
+echo "vgem" | sudo tee -a /etc/modules
+```
+
 Ha csak sudo-ként megy, adjuk hozzá a felhasználónkat a video és render csoportokhoz:
 
 ```bash
