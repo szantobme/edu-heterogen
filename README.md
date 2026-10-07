@@ -17,6 +17,8 @@ A hoszt operációs rendszer lehet natív Linux (preferált az Ubuntu 24.04 vagy
     - [Termux](#termux-1)
   - [Docker](#docker)
   - [Visual Studio Code](#visual-studio-code)
+  - [Gstreamer](#gstreamer)
+    - [WSL2 VAAPI](#wsl2-vaapi)
 - [VSCode, fordítás, futtatás](#vscode-fordts-futtats)
 
 # Környezet
@@ -274,6 +276,49 @@ code --install-extension ms-vscode.cpptools-themes
 code --install-extension ms-vscode-remote.remote-containers
 code --install-extension ms-vscode.makefile-tools
 code --install-extension galarius.vscode-opencl
+```
+
+## Gstreamer
+
+Gstreamer ás Gstreamer plugin-ek installálása: [https://gstreamer.freedesktop.org/documentation/installing/on-linux.html?gi-language=c](https://gstreamer.freedesktop.org/documentation/installing/on-linux.html?gi-language=c)
+
+### WSL2 VAAPI
+
+Jó ideje a WSL2 lehetővé teszi a hoszt GPU video enkóderének és dekóderének használatát. Ehhez engedélyzeni kell a systemd-t, valamint installálni kell egy viszonylag friss MESA-t. Bővebben: [https://devblogs.microsoft.com/commandline/d3d12-gpu-video-acceleration-in-the-windows-subsystem-for-linux-now-available/](https://devblogs.microsoft.com/commandline/d3d12-gpu-video-acceleration-in-the-windows-subsystem-for-linux-now-available/)
+
+Kipróbálás:
+
+```bash
+vainfo --display drm --device /dev/dri/renderD128
+```
+
+Amennyiben nem működik, kísérletezzünk az alábbiakkal.
+
+Ellenőrizzük, hogy létezik-e a /dev/dri könyvtár. Ha nem, kézzel töltsük be a vgem kernel modult:
+
+```bash
+sudo modprobe vgem
+```
+
+Ha csak sudo-ként megy, adjuk hozzá a felhasználónkat a video és render csoportokhoz:
+
+```bash
+sudo usermod -aG video,render $USER
+```
+
+Ha több GPU van a rendszerben, akkor a /dev/dri-ben több render* fájl is lehet (pl. renderD128, renderD129), adott eszköz kiválasztása:
+
+```bash
+vainfo --display drm --device /dev/dri/renderD129
+```
+
+Ha több GPU-nk van, de nem mindegyikhez csatlakozik kijelző, akkor azon túlmenően, hogy megadjuk, hogy a d3d12 driver-t használjuk, adjuk mega használni kívánt GPU nevétis. Pl. NVIDIA esetében:
+
+```bash
+export LIBVA_DRIVER_NAME=d3d12
+export GALLIUM_DRIVER=d3d12
+export MESA_D3D12_DEFAULT_ADAPTER_NAME=NVIDIA
+vainfo --display drm --device /dev/dri/renderD128
 ```
 
 # VSCode, fordítás, futtatás
