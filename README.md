@@ -373,8 +373,8 @@ A VScode észlelni fogja a .devcontainer könyvtárat, és felajánlja, hogy meg
 
 A fordítást makefile-lal hajtjuk végre, így
 
-- A make futtaható terminal-ból, de ekkor a hoszt-on fordítunk, nem pedig a DevContainer-ben.
 - A VSCode-ba installáltuk a Makefile Tools-t, így a bal oldali menüben azt kiválasztva, majd Build target opciót All-ra állítva a Build ikonnal is tudunk fordítani.
+- (A make futtaható terminal-ból, de ekkor a hoszt-on fordítunk, nem pedig a DevContainer-ben. Termux-ban ezt kell tenni.)
 
 ### Futatás
 
